@@ -12,6 +12,7 @@ URL:		http://github.com/cjheath/geoip
 Source0:	http://rubygems.org/gems/%{rbname}-%{version}.gem
 BuildRequires:	rubygems 
 BuildArch:	noarch
+%rename		ruby-%{rbname}
 
 %description
 GeoIP searches a GeoIP database for a given host or IP address, and
