@@ -1,38 +1,52 @@
-%define	oname	geoip
+# Generated from geoip-1.0.0.gem by gem2rpm5 -*- rpm-spec -*-          
+%define	rbname	geoip
 
 Summary:	GeoIP ruby gem
-Name:		rubygem-%{oname}
+Name:		rubygem-%{rbname}
+
 Version:	1.0.0
-Release:	%mkrel 1
-License:	MIT
+Release:	1
 Group:		Development/Ruby
-URL:		http://%{oname}.rubyforge.org/
-Source0:	http://gems.rubyforge.org/gems/%{oname}-%{version}.gem
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+License:	MIT
+URL:		http://github.com/cjheath/geoip
+Source0:	http://rubygems.org/gems/%{rbname}-%{version}.gem
+BuildRequires:	rubygems 
 BuildArch:	noarch
-BuildRequires:	ruby-RubyGems
-Requires:	ruby
-%rename		ruby-%{oname}
 
 %description
-The Ruby gem for querying Maxmind.com's GeoIP database, which returns the
-geographic location of a server given its IP address
+GeoIP searches a GeoIP database for a given host or IP address, and
+returns information about the country where the IP address is allocated,
+and the city, ISP and other information, if you have that database version.
+
+%package	doc
+Summary:	Documentation for %{name}
+Group:		Books/Computer books
+Requires:	%{name} = %{EVRD}
+
+%description	doc
+Documents, RDoc & RI documentation for %{name}.
 
 %prep
+%setup -q
 
 %build
+%gem_build -f test
 
 %install
 rm -rf %{buildroot}
-gem install --install-dir %{buildroot}/%{ruby_gemdir} --force %{SOURCE0}
+%gem_install
 
 %clean
-rm -rf %buildroot
+rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
-%doc %{ruby_gemdir}/doc/%{oname}-%{version}
-%{ruby_gemdir}/cache/%{oname}-%{version}.gem
-%{ruby_gemdir}/specifications/%{oname}-%{version}.gemspec
-%{ruby_gemdir}/gems/%{oname}-%{version}
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/lib
+%{ruby_gemdir}/gems/%{rbname}-%{version}/lib/*.rb
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/test
+%{ruby_gemdir}/gems/%{rbname}-%{version}/test/*.rb
+%{ruby_gemdir}/specifications/%{rbname}-%{version}.gemspec
 
+%files doc
+%doc %{ruby_gemdir}/gems/%{rbname}-%{version}/*.txt
+%doc %{ruby_gemdir}/doc/%{rbname}-%{version}
