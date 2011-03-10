@@ -1,7 +1,7 @@
 %define	oname	geoip
 
 Summary:	GeoIP ruby gem
-Name:		ruby-%{oname}
+Name:		rubygem-%{oname}
 Version:	0.8.6
 Release:	%mkrel 2
 License:	MIT
@@ -12,6 +12,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildArch:	noarch
 BuildRequires:	ruby-RubyGems
 Requires:	ruby
+%rename		ruby-%{oname}
 
 %description
 The Ruby gem for querying Maxmind.com's GeoIP database, which returns the
