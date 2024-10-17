@@ -8,7 +8,7 @@ Version:	1.0.0
 Release:	1
 Group:		Development/Ruby
 License:	MIT
-URL:		http://github.com/cjheath/geoip
+URL:		https://github.com/cjheath/geoip
 Source0:	http://rubygems.org/gems/%{rbname}-%{version}.gem
 BuildRequires:	rubygems 
 BuildArch:	noarch
